@@ -8,6 +8,11 @@ void main() {
   print(Rectangle(origin: const Point(10, 10)));
   print(Rectangle(width: 200));
   print(Rectangle());
+
+  final circle = Circle(2);
+  final square = Square(2);
+  print(circle.area);
+  print(square.area);
 }
 
 class Bicycle {
@@ -35,4 +40,25 @@ class Rectangle {
   Rectangle({this.origin = const Point(0, 0), this.width = 0, this.height = 0});
   toString() =>
       'Origin: (${origin.x}, ${origin.y}), width: $width, height: $height';
+}
+
+abstract class Shape {
+  num get area;
+}
+
+class Circle implements Shape {
+  final num radius;
+  Circle(this.radius);
+  num get area => pi * pow(radius, 2);
+}
+
+class Square implements Shape {
+  final num side;
+  Square(this.side);
+  num get area => pow(side, 2);
+}
+
+class CircleMock implements Circle {
+  num area = 0;
+  num radius = 0;
 }
